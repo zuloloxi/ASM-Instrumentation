@@ -160,3 +160,6 @@ Transactions completed
 * [Instrumenting Java Bytecode with ASM](http://web.cs.ucla.edu/~msb/cs239-tutorial/)
 * [Diving into Bytecode Manipulation: Creating an Audit Log with ASM and Javassist](https://blog.newrelic.com/2014/09/29/diving-bytecode-manipulation-creating-audit-log-asm-javassist/)
 * [An introduction to Java Agent and bytecode manipulation](http://www.tomsquest.com/blog/2014/01/intro-java-agent-and-bytecode-manipulation/)
+JVM Bytecode for Dummies (and the Rest of Us Too):
+* https://www.slideshare.net/CharlesNutter/javaone-2011-jvm-bytecode-for-dummies
+* https://www.youtube.com/watch?v=rPyqB1l4gko
