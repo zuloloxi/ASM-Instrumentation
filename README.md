@@ -1,13 +1,16 @@
 # ASM-Instrumentation
-Java bytecode manipulation and analysis framework
+Living in the Matrix with Bytecode Manipulation
+https://blog.newrelic.com/engineering/diving-bytecode-manipulation-creating-audit-log-asm-javassist/
+
+Java ASM bytecode manipulation 
 
 ASM is an all purpose Java bytecode manipulation and analysis framework. It can be used to modify existing classes or dynamically generate classes, directly in binary form. This demo will guide you to have basic understand how ASM works and what will ASM do.
 
 ## Environment
-The ASM bytecode manipulation framework is written in Java. Java Runtime Environment is required.
+The ASM bytecode manipulation framework is written in Java. Tested in Java Runtime Environment 8.
 
 ### Download ASM
-You can download the latest binary file from the [ObjectWeb Forge](http://forge.ow2.org/projects/asm/). This demo uses the version 5.2.
+You can download the latest binary file from the [ObjectWeb Forge](http://forge.ow2.org/projects/asm/). Used ow2 ASM version 5.2.
 
 ### Eclipse plugin
 Bytecode Outline plugin for Eclipse shows disassembled bytecode of current Java editor or class file. The Bytecode Outline plugin can be installed from the Eclipse Update Manager with the ObjectWeb Eclipse Update Site http://download.forge.objectweb.org/eclipse-update/
@@ -15,61 +18,7 @@ Bytecode Outline plugin for Eclipse shows disassembled bytecode of current Java 
 ## Java Bytecode
 Here is a quick review in case you are not familiar with Java Bytecode. Java Bytecode is an intermediate code between Java source code and assembly code. Java source code `.java` file can be compiled into Bytecode `.class` file and run on where any computers have a Java Runtime Environment.
 
-![Compile Java](https://raw.githubusercontent.com/xingziye/ASM-Instrumentation/master/ASM/image/21.jpg)
-
-For example, consider the following block of code:
-
-```java
-public class Test
-{
-    public static void main(String[] args) {
-        printOne();
-        printOne();
-        printTwo();
-    }
-    
-    public static void printOne() {
-        System.out.println("Hello World");
-    }
-    
-    public static void printTwo() {
-        printOne();
-        printOne();
-    }
-}
-```
-
-By using `javac` to compile and then `javap -c` to disassemble it, here is what we get:
-
-```java
-public class Test {
-  public Test();
-    Code:
-       0: aload_0       
-       1: invokespecial #1                  // Method java/lang/Object."":()V
-       4: return        
-
-  public static void main(java.lang.String[]);
-    Code:
-       0: invokestatic  #2                  // Method printOne:()V
-       3: invokestatic  #2                  // Method printOne:()V
-       6: invokestatic  #3                  // Method printTwo:()V
-       9: return        
-
-  public static void printOne();
-    Code:
-       0: getstatic     #4                  // Field java/lang/System.out:Ljava/io/PrintStream;
-       3: ldc           #5                  // String Hello World
-       5: invokevirtual #6                  // Method java/io/PrintStream.println:(Ljava/lang/String;)V
-       8: return        
-
-  public static void printTwo();
-    Code:
-       0: invokestatic  #2                  // Method printOne:()V
-       3: invokestatic  #2                  // Method printOne:()V
-       6: return        
-}
-```
+![Compile Java](https://raw.githubusercontent.com/zuloloxi/ASM-Instrumentation/master/ASM/image/21.jpg)
 
 As mentioned before, ASM framework includes tools to help you translate between those codes. Bytecode Outline shows disassembled bytecode of current Java editor or class file. Unlike `javap`, ASMifier on compiled classes allows you to see how any given bytecode could be generated with ASM.
 
@@ -86,8 +35,30 @@ The Core package can be logically divided into two major parts:
 
 ASM ClassReader will call `accept()` to allow visitor to walk through itself. We can define our own visitor to override any methods in order to manipulate bytecode we desire to chanage.
 
-## Demo
-![Agent](https://raw.githubusercontent.com/xingziye/ASM-Instrumentation/master/ASM/image/72.jpg)
+Bytecode is the instruction set of the Java Virtual Machine (JVM), and all languages that run on the JVM must eventually compile down to bytecode. Bytecode is manipulated for a variety of reasons:
+
+##Program analysis:
+
+###find bugs in your application
+###examine code complexity
+###find classes with a specific annotation
+##Class generation:
+
+###lazy load data from a database using proxies
+##Security:
+
+###restrict access to certain APIs
+###code obfuscation
+##Transforming classes without the Java source code:
+
+###code profiling
+###code optimization
+##And finally, adding logging to applications.
+
+There are several tools that can be used to manipulate bytecode, ranging from very low-level tools such as ASM, which require you to work at the bytecode level, to high level frameworks such as AspectJ, which allow you to write pure Java.
+
+## ASM to create an audit log.
+![Agent](https://raw.githubusercontent.com/zuloloxi/ASM-Instrumentation/master/ASM/image/72.jpg)
 We will use Java agent to monitor the main process and use ASM to modify the bytecode at running time.
 Let us say we are particularly interested in certain methods in main
 
@@ -128,7 +99,7 @@ How do we know what to put in the visitor methods? As we mentioned above the ASM
 Notice that the process only happens when we first time load the method, so that the method name will only print once while the parameter index will print many times, since we have already modified its bytecode in the method, whenever the method is invoked the important parameter index will also be printed. That will be a basic instrumentation by using ASM.
 
 ```
-$ java -cp workspace/asm-all-5.2.jar -javaagent:ASM.jar BankTransactions
+$ java -cp lib/asm-5.2.jar -javaagent:myagent.jar BankTransactions
 Starting the agent
 <init>
 main
@@ -143,6 +114,7 @@ withdraw
 ```
 
 ## Reference
+* https://www.infoq.com/articles/Living-Matrix-Bytecode-Manipulation/
 * "ASM: a code manipulation tool to implement adaptable systems", E. Bruneton, R. Lenglet and T. Coupaye, Adaptable and extensible component systems, November 2002, Grenoble, France.
 * "Using ASM framework to implement common bytecode transformation patterns", E. Kuleshov, AOSD.07, March 2007, Vancouver, Canada.
 * [Official Tutorial for ASM 2.0.](http://asm.ow2.org/doc/tutorial-asm-2.0.html)
