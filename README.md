@@ -99,15 +99,17 @@ By setting the premain flag in manifest file, our program will now start from pr
     return writer.toByteArray();
 ```
 
-ASM palys role here, when visitor visits any methods with annotation `@Important`, we record the field related to the method and modify any bytecode as we wish. Here we simply print any important methods' index of parameter that we care:
+ASM plays role here, in PrintMessageMethodVisitor extended MethodVisitor class, when visitor visits the methods with annotation `@ImportantLog`, we record the field related to the method and modify the bytecode in visitCode method, to simply print the important log methods' index of parameters:
 
 ```java
-    System.out.println(methodName);
-    if (isImportant) {
-	mv.visitFieldInsn(Opcodes.GETSTATIC, "java/lang/System", "err", "Ljava/io/PrintStream;");
-	mv.visitLdcInsn(parameterIndexes.toString());
-	mv.visitMethodInsn(Opcodes.INVOKEVIRTUAL, "java/io/PrintStream", "println", "(Ljava/lang/String;)V", false);
-    }
+System.out.println(methodName);
+if (isImportant) {
+	for (String index : parameterIndexes) {
+		mv.visitFieldInsn(Opcodes.GETSTATIC, "java/lang/System", "out", "Ljava/io/PrintStream;");
+		mv.visitVarInsn(Opcodes.ALOAD, Integer.valueOf(index) + 1);
+		mv.visitMethodInsn(Opcodes.INVOKEVIRTUAL, "java/io/PrintStream", "println", "(Ljava/lang/Object;)V", false);
+	}
+}
 ```
 How do we know what to put in the visitor methods? As we mentioned above the ASMifier can let us know what ASM code needed to generate the target code.
 
