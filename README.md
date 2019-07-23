@@ -1,4 +1,5 @@
-# ASM-Instrumentation
+# ASM Bytecode Manipulation
+
 Living in the Matrix with Bytecode Manipulation
 https://blog.newrelic.com/engineering/diving-bytecode-manipulation-creating-audit-log-asm-javassist/
 
@@ -13,7 +14,7 @@ The ASM bytecode manipulation framework is written in Java. To test the example,
 You can download the latest code source and binary file from the [ASM repository.ow2.org](https://repository.ow2.org/nexus/content/repositories/releases/org/ow2/asm/asm/). For testing it is used ow2 ASM version 5.2.
 
 ### Eclipse plugin
-Bytecode Outline plugin for Eclipse shows disassembled bytecode of current Java editor or class file. The ow2 Eclipse plugin can be installed from the the ow2 gitlab Eclipse plugin project: https://gitlab.ow2.org/asm/eclipse-plugin
+Bytecode Outline plugin for Eclipse shows disassembled bytecode of current Java editor or class file. The ow2 Eclipse plugin can be installed from [eclipse marketplace](https://marketplace.eclipse.org/content/bytecode-outline). The gitlab Eclipse plugin project link: https://gitlab.ow2.org/asm/eclipse-plugin
 
 ## Java Bytecode
 Here is a quick review in case you are not familiar with Java Bytecode. Java Bytecode is an intermediate code between Java source code and assembly code. Java source code `.java` file can be compiled into Bytecode `.class` file and run on where any computers have a Java Runtime Environment.
@@ -154,9 +155,14 @@ Transactions completed
 
 ## Reference
 * https://www.infoq.com/articles/Living-Matrix-Bytecode-Manipulation/
-* "ASM: a code manipulation tool to implement adaptable systems", E. Bruneton, R. Lenglet and T. Coupaye, Adaptable and extensible component systems, November 2002, Grenoble, France.
-* "Using ASM framework to implement common bytecode transformation patterns", E. Kuleshov, AOSD.07, March 2007, Vancouver, Canada.
-* [Official Tutorial for ASM 2.0.](http://asm.ow2.org/doc/tutorial-asm-2.0.html)
+* [ASM: a code manipulation tool to implement adaptable systems", E. Bruneton, R. Lenglet and T. Coupaye, Adaptable and extensible component systems, November 2002, Grenoble, France](http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.117.5769)
+* [Using ASM framework to implement common bytecode transformation patterns", E. Kuleshov, AOSD.07, March 2007, Vancouver, Canada](http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.180.7169)
+* [Official Tutorial for ASM 2.0.](https://web.archive.org/web/20160316111714/http://asm.ow2.org/doc/tutorial-asm-2.0.html)
 * [Instrumenting Java Bytecode with ASM](http://web.cs.ucla.edu/~msb/cs239-tutorial/)
 * [Diving into Bytecode Manipulation: Creating an Audit Log with ASM and Javassist](https://blog.newrelic.com/2014/09/29/diving-bytecode-manipulation-creating-audit-log-asm-javassist/)
 * [An introduction to Java Agent and bytecode manipulation](http://www.tomsquest.com/blog/2014/01/intro-java-agent-and-bytecode-manipulation/)
+#### JVM Bytecode for Dummies (and the Rest of Us Too):
+* https://www.slideshare.net/CharlesNutter/javaone-2011-jvm-bytecode-for-dummies
+* https://www.youtube.com/watch?v=rPyqB1l4gko
+* https://dzone.com/articles/byte-code-engineering-1
+* https://www.artima.com/insidejvm/ed2/index.html
