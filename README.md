@@ -155,7 +155,7 @@ Transactions completed
 
 ## Reference
 * https://www.infoq.com/articles/Living-Matrix-Bytecode-Manipulation/
-* "ASM: a code manipulation tool to implement adaptable systems", E. Bruneton, R. Lenglet and T. Coupaye, Adaptable and extensible component systems, November 2002, Grenoble, France.
+* [ASM: a code manipulation tool to implement adaptable systems", E. Bruneton, R. Lenglet and T. Coupaye, Adaptable and extensible component systems, November 2002, Grenoble, France](http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.117.5769)
 * [Using ASM framework to implement common bytecode transformation patterns", E. Kuleshov, AOSD.07, March 2007, Vancouver, Canada](http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.180.7169)
 * [Official Tutorial for ASM 2.0.](https://web.archive.org/web/20160316111714/http://asm.ow2.org/doc/tutorial-asm-2.0.html)
 * [Instrumenting Java Bytecode with ASM](http://web.cs.ucla.edu/~msb/cs239-tutorial/)
