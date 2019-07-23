@@ -62,7 +62,6 @@ Bytecode is the instruction set of the Java Virtual Machine (JVM), and all langu
 There are several tools that can be used to manipulate bytecode, ranging from very low-level tools such as ASM, which require you to work at the bytecode level, to high level frameworks such as AspectJ, which allow you to write pure Java.
 
 ![](https://raw.githubusercontent.com/zuloloxi/ASM-Instrumentation/master/ASM/image/BM1.png)
-![](https://blog.newrelic.com/wp-content/uploads/BM1.png)
 
 ### ASM to create an audit log.
 ![Agent](https://raw.githubusercontent.com/zuloloxi/ASM-Instrumentation/master/ASM/image/72.jpg)
@@ -116,18 +115,41 @@ How do we know what to put in the visitor methods? As we mentioned above the ASM
 Notice that the process only happens when we first time load the method, so that the method name will only print once while the parameter index will print many times, since we have already modified its bytecode in the method, whenever the method is invoked the important parameter index will also be printed. That will be a basic instrumentation by using ASM.
 
 ```
-$ java -cp lib/asm-5.2.jar -javaagent:myagent.jar BankTransactions
+
+Compile java source code in bin folder on cmd line:
+
+c:\ASM\bin> javac -cp .;..\lib\asm-5.2.jar ..\src\*.java
+
+Move .class files to 
+
+c:\ASM\bin> move ..\src\*.class ..\bin\
+
+Create myagent.jar
+
+c:\ASM\bin> jar cmf ..\lib\manifest.txt myagent.jar ..\bin\*.class
+
+Run the log exemple
+
+c:\ASM\bin> java -javaagent:myagent.jar -cp ..\src;.;..\lib\asm-5.2.jar BankTransactions
 Starting the agent
-<init>
-main
-unimportantProcessing
-login
-withdraw
-[1, 2]
-[0, 1]
-[1, 2]
-[0, 1]
+account0
+Ashley0
+account0
+100.0
+account1
+Ashley1
+account1
+101.0
+account2
+Ashley2
+account2
+102.0
 ...
+account99
+Ashley99
+account99
+199.0
+Transactions completed
 ```
 
 ## Reference

@@ -55,7 +55,7 @@ public class PrintMessageMethodVisitor extends MethodVisitor {
 			mv.visitFieldInsn(Opcodes.GETSTATIC, "java/lang/System", "out", "Ljava/io/PrintStream;");
 			mv.visitLdcInsn(parameterIndexes.toString());
 			mv.visitMethodInsn(Opcodes.INVOKEVIRTUAL, "java/io/PrintStream", "println", "(Ljava/lang/String;)V", false);
-			/*
+			*
 			mv.visitFieldInsn(Opcodes.GETSTATIC, "java/lang/System", 
 			        "out","Ljava/io/PrintStream;");
 			mv.visitTypeInsn(Opcodes.NEW, "java/lang/StringBuilder");
@@ -69,7 +69,7 @@ public class PrintMessageMethodVisitor extends MethodVisitor {
 		    mv.visitMethodInsn(Opcodes.INVOKEVIRTUAL,
 		        "java/lang/StringBuilder", "append",
 		        "(Ljava/lang/String;)Ljava/lang/StringBuilder;", false);
-		    */
+		    *
 		}
 	 	ending older code not working
 		*/

@@ -5,9 +5,10 @@ public class BankTransactions {
 		BankTransactions bank = new BankTransactions();
 		for (int i = 0; i < 100; i++) {
 		    String accountId = "account" + i;
-		    bank.login("password", accountId, "Ashley");
+			String passId = "Ashley"+i; 
+		    bank.login("password", accountId, passId);
 		    bank.unimportantProcessing(accountId);
-		    bank.withdraw(accountId, Double.valueOf(i));
+		    bank.withdraw(accountId, Double.valueOf(i)+100.0);
 		}
 		System.out.println("Transactions completed");
 
