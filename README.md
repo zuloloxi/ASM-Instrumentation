@@ -37,30 +37,34 @@ ASM ClassReader will call `accept()` to allow visitor to walk through itself. We
 
 Bytecode is the instruction set of the Java Virtual Machine (JVM), and all languages that run on the JVM must eventually compile down to bytecode. Bytecode is manipulated for a variety of reasons:
 
-## Program analysis:
+### Program analysis:
 
-### find bugs in your application
-### examine code complexity
-### find classes with a specific annotation
-## Class generation:
+#### find bugs in your application
+#### examine code complexity
+#### find classes with a specific annotation
 
-### lazy load data from a database using proxies
-## Security:
+### Class generation:
 
-### restrict access to certain APIs
-### code obfuscation
-## Transforming classes without the Java source code:
+#### lazy load data from a database using proxies
 
-### code profiling
-### code optimization
-## And finally, adding logging to applications.
+### Security:
+
+#### restrict access to certain APIs
+#### code obfuscation
+
+### Transforming classes without the Java source code:
+
+#### code profiling
+#### code optimization
+
+### And finally, adding logging to applications.
 
 There are several tools that can be used to manipulate bytecode, ranging from very low-level tools such as ASM, which require you to work at the bytecode level, to high level frameworks such as AspectJ, which allow you to write pure Java.
 
 ![](https://raw.githubusercontent.com/zuloloxi/ASM-Instrumentation/master/ASM/image/BM1.png)
 ![](https://blog.newrelic.com/wp-content/uploads/BM1.png)
 
-## ASM to create an audit log.
+### ASM to create an audit log.
 ![Agent](https://raw.githubusercontent.com/zuloloxi/ASM-Instrumentation/master/ASM/image/72.jpg)
 We will use Java agent to monitor the main process and use ASM to modify the bytecode at running time.
 Let us say we are particularly interested in certain methods in main
