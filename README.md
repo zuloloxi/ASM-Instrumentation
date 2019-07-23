@@ -14,7 +14,7 @@ The ASM bytecode manipulation framework is written in Java. To test the example,
 You can download the latest code source and binary file from the [ASM repository.ow2.org](https://repository.ow2.org/nexus/content/repositories/releases/org/ow2/asm/asm/). For testing it is used ow2 ASM version 5.2.
 
 ### Eclipse plugin
-Bytecode Outline plugin for Eclipse shows disassembled bytecode of current Java editor or class file. The ow2 Eclipse plugin can be installed from the the ow2 gitlab Eclipse plugin project: https://gitlab.ow2.org/asm/eclipse-plugin
+Bytecode Outline plugin for Eclipse shows disassembled bytecode of current Java editor or class file. The ow2 Eclipse plugin can be installed from [eclipse marketplace](https://marketplace.eclipse.org/content/bytecode-outline). The gitlab Eclipse plugin project link: https://gitlab.ow2.org/asm/eclipse-plugin
 
 ## Java Bytecode
 Here is a quick review in case you are not familiar with Java Bytecode. Java Bytecode is an intermediate code between Java source code and assembly code. Java source code `.java` file can be compiled into Bytecode `.class` file and run on where any computers have a Java Runtime Environment.
