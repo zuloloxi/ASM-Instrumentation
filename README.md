@@ -8,10 +8,10 @@ Java ASM bytecode manipulation
 ASM is an all purpose Java bytecode manipulation and analysis framework. It can be used to modify existing classes or dynamically generate classes, directly in binary form. This demo will guide you to have basic understand how ASM works and what will ASM do.
 
 ## Environment
-The ASM bytecode manipulation framework is written in Java. To test the example, it is used JDK 8.
+The ASM bytecode manipulation framework is written in Java. The example was tested with JDK 8.
 
 ### Download ASM
-You can download the latest code source and binary file from the [ASM repository.ow2.org](https://repository.ow2.org/nexus/content/repositories/releases/org/ow2/asm/asm/). For testing it is used ow2 ASM version 5.2.
+You can download the latest code source and binary file from the [ASM repository.ow2.org](https://repository.ow2.org/nexus/content/repositories/releases/org/ow2/asm/asm/). Tested with OW2 ASM 5.2 version.
 
 ### Eclipse plugin
 Bytecode Outline plugin for Eclipse shows disassembled bytecode of current Java editor or class file. The ow2 Eclipse plugin can be installed from [eclipse marketplace](https://marketplace.eclipse.org/content/bytecode-outline). The gitlab Eclipse plugin project link: https://gitlab.ow2.org/asm/eclipse-plugin
