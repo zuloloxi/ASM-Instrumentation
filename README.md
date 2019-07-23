@@ -7,13 +7,13 @@ Java ASM bytecode manipulation
 ASM is an all purpose Java bytecode manipulation and analysis framework. It can be used to modify existing classes or dynamically generate classes, directly in binary form. This demo will guide you to have basic understand how ASM works and what will ASM do.
 
 ## Environment
-The ASM bytecode manipulation framework is written in Java. Tested in Java Runtime Environment 8.
+The ASM bytecode manipulation framework is written in Java. To test the example, it is used JDK 8.
 
 ### Download ASM
-You can download the latest binary file from the [ObjectWeb Forge](http://forge.ow2.org/projects/asm/). Used ow2 ASM version 5.2.
+You can download the latest code source and binary file from the [ASM repository.ow2.org](https://repository.ow2.org/nexus/content/repositories/releases/org/ow2/asm/asm/). For testing it is used ow2 ASM version 5.2.
 
 ### Eclipse plugin
-Bytecode Outline plugin for Eclipse shows disassembled bytecode of current Java editor or class file. The Bytecode Outline plugin can be installed from the Eclipse Update Manager with the ObjectWeb Eclipse Update Site http://download.forge.objectweb.org/eclipse-update/
+Bytecode Outline plugin for Eclipse shows disassembled bytecode of current Java editor or class file. The ow2 Eclipse plugin can be installed from the the ow2 gitlab Eclipse plugin project: https://gitlab.ow2.org/asm/eclipse-plugin
 
 ## Java Bytecode
 Here is a quick review in case you are not familiar with Java Bytecode. Java Bytecode is an intermediate code between Java source code and assembly code. Java source code `.java` file can be compiled into Bytecode `.class` file and run on where any computers have a Java Runtime Environment.
@@ -37,25 +37,28 @@ ASM ClassReader will call `accept()` to allow visitor to walk through itself. We
 
 Bytecode is the instruction set of the Java Virtual Machine (JVM), and all languages that run on the JVM must eventually compile down to bytecode. Bytecode is manipulated for a variety of reasons:
 
-##Program analysis:
+## Program analysis:
 
-###find bugs in your application
-###examine code complexity
-###find classes with a specific annotation
-##Class generation:
+### find bugs in your application
+### examine code complexity
+### find classes with a specific annotation
+## Class generation:
 
-###lazy load data from a database using proxies
-##Security:
+### lazy load data from a database using proxies
+## Security:
 
-###restrict access to certain APIs
-###code obfuscation
-##Transforming classes without the Java source code:
+### restrict access to certain APIs
+### code obfuscation
+## Transforming classes without the Java source code:
 
-###code profiling
-###code optimization
-##And finally, adding logging to applications.
+### code profiling
+### code optimization
+## And finally, adding logging to applications.
 
 There are several tools that can be used to manipulate bytecode, ranging from very low-level tools such as ASM, which require you to work at the bytecode level, to high level frameworks such as AspectJ, which allow you to write pure Java.
+
+![](https://raw.githubusercontent.com/zuloloxi/ASM-Instrumentation/master/ASM/image/BM1.png)
+![](https://blog.newrelic.com/wp-content/uploads/BM1.png)
 
 ## ASM to create an audit log.
 ![Agent](https://raw.githubusercontent.com/zuloloxi/ASM-Instrumentation/master/ASM/image/72.jpg)
@@ -63,13 +66,21 @@ We will use Java agent to monitor the main process and use ASM to modify the byt
 Let us say we are particularly interested in certain methods in main
 
 ```java
-    BankTransactions bank = new BankTransactions();
-    for (int i = 0; i < 100; i++) {
-        String accountId = "account" + i;
-	bank.login("password", accountId, "Ashley");
-	bank.unimportantProcessing(accountId);
-	bank.withdraw(accountId, Double.valueOf(i));
-    }
+public class BankTransactions {
+
+	public static void main(String[] args) {
+		BankTransactions bank = new BankTransactions();
+		for (int i = 0; i < 100; i++) {
+		    String accountId = "account" + i;
+			String passId = "Ashley"+i; 
+		    bank.login("password", accountId, passId);
+		    bank.unimportantProcessing(accountId);
+		    bank.withdraw(accountId, Double.valueOf(i)+100.0);
+		}
+		System.out.println("Transactions completed");
+
+	}
+...
 ```
 
 We want to keep track of those important behaviors such as login and withdraw. We can use Java annotation to mark those methods for later use.
