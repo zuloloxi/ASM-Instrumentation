@@ -166,3 +166,5 @@ Transactions completed
 * https://www.youtube.com/watch?v=rPyqB1l4gko
 * https://dzone.com/articles/byte-code-engineering-1
 * https://www.artima.com/insidejvm/ed2/index.html
+* https://web.archive.org/web/20090321045853/http://java.sun.com/docs/books/jvms/
+* https://fr.slideshare.net/RafaelWinterhalter/java-byte-code-in-practice, https://www.youtube.com/watch?v=5cNyrkjJ5KY
